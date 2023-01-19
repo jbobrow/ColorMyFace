@@ -1,0 +1,132 @@
+<!-- Color My Face . Website -->
+<!--
+Other nice fullpage color websites:
+	http://color.aurlien.net/ - fun interface
+	https://color.hailpixel.com/ - same interface... multicolor
+
+Color picker tools:
+	https://www.cssscript.com/tag/color-picker/
+	https://www.cssscript.com/color-picker-coloris/
+Color temperature reference:
+	https://lightingdesignstudio.co.uk/colour-temperature/
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ColorMyFace.Website</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+	<script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #clr-picker {
+    	position: fixed !important;
+    	top: 10px !important;
+    	left: 10px !important;
+    	z-index: 1000;
+    }
+
+    #left {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        background-color: #F00;
+    }
+
+    #right {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        background-color: #FFF;
+    }
+
+    .full {
+        display: inline;
+    }
+
+    .full button {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+    }
+
+    </style>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div class="full">
+        <input id="leftButton" type="text" class="coloris instance1" value="#FF9933">
+    </div>
+    <!-- The following needs to be spaced exactly this way -->
+    <!--
+    <div id="left"></div>
+    <div id="right"></div>
+	-->
+    <!-- To learn more 👉 https://stackoverflow.com/questions/18262300/two-inline-block-elements-each-50-wide-do-not-fit-side-by-side-in-a-single-ro -->
+    <script type="text/javascript" src="dependencies/coloris.min.js"></script>
+    <script type="text/javascript">
+    /* Size the buttons to half of the viewport size */
+    var leftColor = document.getElementById("leftButton");
+    leftColor.style.width = window.innerWidth;
+
+    /** Default configuration **/
+
+    Coloris({
+        el: '.coloris'
+    });
+
+    /** Instances **/
+
+    Coloris.setInstance('.instance1', {
+        themeMode: 'dark',
+        alpha: false,
+        swatches: [
+            '#FF9933',
+            '#FFCC66',
+            '#FFEECC',
+            '#FFFFFF',
+            '#99EEEE',
+            '#66CCFF'
+        ],
+        swatchesOnly: true
+    });
+
+	/* The following is not used... */
+	document.addEventListener('DOMContentLoaded', function() {
+   
+		console.log("loaded");
+
+		let element = document.getElementById("clr-picker");
+		console.log("element");
+		console.log(element);
+		element.addEventListener("transitionend", function() {
+		  if (element.style.visibility === "visible" || element.style.display === "block") {
+		    // Trigger event
+		    console.log("changing position");
+		    element.style.left = "0 !important";
+	        element.style.top = "0 !important";    
+
+		  }
+		});
+
+    }, false);
+
+    </script>
+</body>
+
+</html>
